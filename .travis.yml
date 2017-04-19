@@ -1,4 +1,8 @@
 language: python
+
+script:
+  - echo "No script for now"
+  
 deploy:
   provider: pypi
   user: csabasulyok

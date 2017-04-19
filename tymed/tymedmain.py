@@ -10,7 +10,7 @@ The execution will be incrementally timed for every iteration, until consumed us
 from time import time
 
 
-class TimedMethods(object):
+class TymedMethods(object):
     '''
     Annotate a method to activate timing for it.
     The function's execution will be incrementally timed for every iteration,
@@ -35,32 +35,32 @@ class TimedMethods(object):
 
 
 # default instance & methods
-timedMtds = TimedMethods()
+tymedMtds = TymedMethods()
 
 
 
-def timedClass(cls):
+def tymedCls(cls):
     for _, val in cls.__dict__.iteritems():
-        if callable(val) and hasattr(val, '__timed__'):
-            val.__boundtimed__ = True
+        if callable(val) and hasattr(val, '__tymed__'):
+            val.__boundtymed__ = True
                
     return cls
 
     
-def timed(mtd):
+def tymed(mtd):
     def wrappedMtd(*args, **kwargs):
-        if hasattr(wrappedMtd, '__boundtimed__'):
+        if hasattr(wrappedMtd, '__boundtymed__'):
             mtdId = "%s.%s" %(id(args[0]), id(mtd))
         else:
             mtdId = id(mtd)
             
-        timedMtds.onMtdStart(mtdId)
+        tymedMtds.onMtdStart(mtdId)
         ret = mtd(*args, **kwargs)
-        timedMtds.onMtdFinish(mtdId)
+        tymedMtds.onMtdFinish(mtdId)
         
         return ret
     
-    wrappedMtd.__timed__ = True
+    wrappedMtd.__tymed__ = True
     wrappedMtd.__origMtd__ = mtd
     return wrappedMtd
 
@@ -70,5 +70,5 @@ def lap(mtd):
         mtdId = "%s.%s" %(id(mtd.__self__), id(mtd.__origMtd__))
     else:
         mtdId = id(mtd.__origMtd__)
-    return timedMtds.lap(mtdId)
+    return tymedMtds.lap(mtdId)
 

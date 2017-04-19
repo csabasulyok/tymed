@@ -8,7 +8,6 @@ setup(
   author='Csaba Sulyok',
   author_email='csaba.sulyok@gmail.com',
   url='https://github.com/csabasulyok/tymed',
-  download_url='https://github.com/csabasulyok/tymed/archive/0.0.1.tar.gz',
   keywords=['timer'],
   classifiers=[],
 )

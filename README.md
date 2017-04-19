@@ -1,5 +1,9 @@
 Tymed
 =====
+[![Build Status](https://travis-ci.org/csabasulyok/tymed.svg?branch=master)](https://travis-ci.org/csabasulyok/tymed)
+[![PyPI version](https://badge.fury.io/py/tymed.svg)](https://badge.fury.io/py/tymed)
+
+
 Timer utility for [Python](https://www.python.org/) functions and bound methods. Allows calling functions/methods multiple times and analysing how much time they took.
 
 ## Installation ##
@@ -27,7 +31,7 @@ resetTyme(tymedFunction)       # reset measurements
 print lap(tymedFunction)       # how long all of them took + reset measurements
 ```
 
-1. Monitor a bound method
+2. Monitor a bound method
 
 ```python
 from tymed import *

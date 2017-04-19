@@ -3,7 +3,7 @@
 '''
 
 import unittest
-from tymedtest.tymedtestdata import tymedFunction,\
+from tymedtest.testtymeddata import tymedFunction,\
     tymedFunctionWithArgsAndRetVal, tymedFunctionWithException
 from tymed import lastTyme, allTyme, resetTyme
 
@@ -11,8 +11,8 @@ from tymed import lastTyme, allTyme, resetTyme
 class TestTymed(unittest.TestCase):
 
     def setUp(self):
+        print ''
         resetTyme()
-        
         
     def test_tymedFunctionCalledNonce(self):
         # then

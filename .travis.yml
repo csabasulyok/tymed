@@ -1,7 +1,7 @@
 language: python
 
 script:
-  - echo "No script for now"
+  - python -m unittest discover -v
   
 deploy:
   provider: pypi

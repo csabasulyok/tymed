@@ -1,9 +1,6 @@
-# Configuration for Travis CI
-
-# mark our language as Python
 language: python
-
-# build & deploy pypi package
 deploy:
   provider: pypi
-  user: "csabasulyok"
+  user: csabasulyok
+  password:
+    secure: vtQdJFw6sW4Fzl5T5UsOH9mI8MIEnIDqCFL3Mz28j8OFJzW5zYXv3Nt11cNPnTFc7r/25VBQD6XQRMlpQf7amT5FehiYxwAZ7RuHQ9NRXF26mDl0voeRy6MeTfIuqfLnx0rrvFy4/G9J23f5Zj1ualzhtM+TJaNHMN8ncTuBJD0MWtklL9t/JXoAAOJob2CDCGJgSqvf2uMQkXbaTsivb9ctl18FpVvyH8eJRLgkqWsqzxAk2Iyl9kNmIdPI3Sbt8BNae7EUvy2znOgPOy+ZUbBVpAilNVCrQkeUuWkbHoTTvIHXJtxotVN2kVAvqRjs5PuM41BY2IODNYOWjYSwWTj9Hfm4LvlMT/wJ9vn/2TkMzRxsU/1PqIfB4H9hygtJeWIQnvHunaZnchrL6u/oEhRZO4NocGWER3SJdGF9ky2q18GUU7rNWpcUzb0Nex5JxHeey0TFttfzFKFQ2pZfRG7WFWJ03if35LIgvnFjx4zKWg/1b8PNOPqTMsrLqYLO1biZadWNV/pV0iGssfXITZMs+rcMbgnar9xRL2TCG/8eSmJAuLfG0aGaUOzfqTxKSTY+9sry4aPi41gF6scruw+eCIGiKKBEs0POfHVZvytPziYIcdRLHjKSsIGSkBVupmgGwCgLipP5TiwYzL40YAWt9RBsf1zJqfzg19nAxJs=

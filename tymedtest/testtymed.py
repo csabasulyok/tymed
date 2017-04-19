@@ -7,7 +7,7 @@ from tymedtest.testtymeddata import tymedFunction,\
     tymedFunctionWithArgsAndRetVal, tymedFunctionWithException, notTymedFunction,\
     TymedClass, NotTymedClass
 from tymed import lastTyme, allTyme, resetTyme, FunctionNotTymedException,\
-    BoundMethodNotInTymedClassException
+    BoundMethodNotInTymedClassException, lap
 
 
 class TestTymed(unittest.TestCase):
@@ -27,6 +27,25 @@ class TestTymed(unittest.TestCase):
         # then
         self.assertAlmostEqual(lastTyme(tymedFunction), 0.1, delta = 0.01)
         self.assertAlmostEqual(allTyme(tymedFunction), 0.1, delta = 0.01)
+    
+    def test_tymedFunctionReset(self):
+        # given
+        tymedFunction()
+        # when
+        resetTyme(tymedFunction)
+        # then
+        self.assertEqual(lastTyme(tymedFunction), 0.0)
+        self.assertEqual(allTyme(tymedFunction), 0.0)
+    
+    def test_tymedFunctionLap(self):
+        # given
+        tymedFunction()
+        # when
+        lapTime = lap(tymedFunction)
+        # then
+        self.assertAlmostEqual(lapTime, 0.1, delta = 0.01)
+        self.assertEqual(lastTyme(tymedFunction), 0.0)
+        self.assertEqual(allTyme(tymedFunction), 0.0)
     
     def test_tymedFunctionCalledNnce(self):
         # given

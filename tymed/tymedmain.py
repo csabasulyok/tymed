@@ -60,6 +60,16 @@ class TymedMethodContainer(dict):
             
         return dict.__getitem__(self, mtdId)
     
+    
+    def __delitem__(self, mtd = None):
+        '''
+        Delete method based on method ID or method itself.
+        '''
+        tymedMtd = self.__getitem__(mtd)
+        if tymedMtd:
+            return dict.__delitem__(self, tymedMtd.mtdId)
+        
+    
 
 class TymedMethodController(object):
     '''

@@ -1,0 +1,9 @@
+# Configuration for Travis CI
+
+# mark our language as Python
+language: python
+
+# build & deploy pypi package
+deploy:
+  provider: pypi
+  user: "csabasulyok"

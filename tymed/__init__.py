@@ -8,3 +8,6 @@ lastTyme = tymedmain.lastTyme
 allTyme = tymedmain.allTyme
 resetTyme = tymedmain.resetTyme
 lap = tymedmain.lap
+
+FunctionNotTymedException = tymedmain.FunctionNotTymedException
+BoundMethodNotInTymedClassException = tymedmain.BoundMethodNotInTymedClassException

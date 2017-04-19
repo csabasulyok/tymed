@@ -2,7 +2,7 @@
 Test data for tymed unit tests.
 @author: Csaba Sulyok <csaba.sulyok@gmail.com>
 '''
-from tymed import tymed
+from tymed import tymed, tymedCls
 from time import sleep
 
 
@@ -29,3 +29,29 @@ def tymedFunctionWithException():
     print 'tymedFunctionWithException()'
     sleep(0.1)
     raise Exception("I am an exception")
+
+
+class NotTymedClass(object):
+    @tymed
+    def tymedMethod(self):
+        print '%s.tymedMethod()' %(self)
+        sleep(0.1)
+
+
+
+@tymedCls
+class TymedClass(object):
+    
+    def __init__(self):
+        self.otherProp = 42
+        
+    @tymed
+    def tymedMethod(self):
+        print '%s.tymedMethod()' %(self)
+        sleep(0.1)
+        
+    @tymed
+    def tymedMethodWithArgAndOtherPropAndRetVal(self, arg):
+        print 'tymedFunctionWithArgsAndRetVal(self.otherProp=%d,arg=%d)' %(self.otherProp, arg)
+        sleep(0.1)
+        return self.otherProp+arg

@@ -7,6 +7,7 @@ The execution will be incrementally timed for every iteration, until consumed us
 '''
 
 from time import time
+import inspect
 
 
 def _id(mtd):
@@ -15,8 +16,11 @@ def _id(mtd):
     If regular function, use it's Python ID.
     If bound function, use concatenation of its object's ID and it's own.
     '''
+    if not hasattr(mtd, '__origMtd__'):
+        raise FunctionNotTymedException(mtd)
+    
     if hasattr(mtd, '__self__'):
-        return "%d.%d" %(id(mtd.__self__), id(mtd.__origMtd__))
+        return "%d.%d" %(id(mtd.__origMtd__), id(mtd.__self__))
     else:
         return "%d" %(id(mtd.__origMtd__))
     
@@ -50,6 +54,8 @@ class TymedMethodContainer(dict):
             mtdId = _id(mtd)
             
         if not self.has_key(mtdId):
+            if self.has_key(mtdId.split('.')[0]):
+                raise BoundMethodNotInTymedClassException(mtd)
             self.__setitem__(mtdId, TymedMethod(mtdId))
             
         return dict.__getitem__(self, mtdId)
@@ -110,7 +116,7 @@ def tymedCls(cls):
 def tymed(mtd):
     def wrappedMtd(*args, **kwargs):
         if hasattr(wrappedMtd, '__boundtymed__'):
-            mtdId = "%d.%d" %(id(args[0]), id(mtd))
+            mtdId = "%d.%d" %(id(mtd), id(args[0]))
         else:
             mtdId = "%d" %(id(mtd))
             
@@ -126,3 +132,25 @@ def tymed(mtd):
     wrappedMtd.__origMtd__ = mtd
     return wrappedMtd
 
+
+
+class FunctionNotTymedException(Exception):
+    
+    def __init__(self, mtd):
+        self.mtd = mtd
+        self.message = "Following item not tymed: " + str(self.mtd)
+        
+    def __repr__(self):
+        return self.message
+    
+    
+
+class BoundMethodNotInTymedClassException(Exception):
+    
+    def __init__(self, mtd):
+        self.mtd = mtd
+        self.message = "Following bound method part of non-tymed class: " + str(self.mtd) + ". Please annotate class with @tymedCls"
+        
+    def __repr__(self):
+        return self.message
+    
